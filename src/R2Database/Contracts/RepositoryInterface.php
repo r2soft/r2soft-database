@@ -1,0 +1,22 @@
+<?php
+
+
+namespace R2Soft\R2Database\Contracts;
+
+
+interface RepositoryInterface
+{
+    public function all($columns = array('*'));
+
+    public function create(array $data);
+
+    public function update(array $data, $id);
+
+    public function delete($id);
+
+    public function find($id, $columns = array('*'));
+
+    public function findBy(String $field, $value, $columns = array('*'));
+
+    public function findByIdDifferenceAndOtherField($id, String $field, $value, $columns = array('*'));
+}

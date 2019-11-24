@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpunit
+        backupGlobals="false"
+        backupStaticAttributes="false"
+        colors="true"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        processIsolation="true"
+        stopOnFailure="false"
+>
+   <testsuites>
+       <testsuite name="Package Test Suite">
+           <directory suffix=".php">./tests</directory>
+       </testsuite>
+   </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src</directory>
+<!--            <directory suffix=".php">tests</directory>-->
+            <exclude>
+                <directory suffix=".php">src/resources</directory>
+<!--                <file>/path/to/file</file>-->
+            </exclude>
+        </whitelist>
+    </filter>
+<!--    <logging>-->
+<!--        <log type="coverage-html" target="./report" lowUpperBound="40" highLowerBound="80" showUncoveredFiles="true" showOnlySummary="true"/>-->
+<!--    </logging>-->
+</phpunit>
