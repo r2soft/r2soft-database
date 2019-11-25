@@ -1,5 +1,23 @@
 {
     "name": "r2soft/r2database",
+    "description":"R2 Soft - Repository pattern library based in Laravel",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "repository",
+        "criteria"
+    ],
+    "authors":[
+        {
+            "name":"Ricardo de Paula Coelho",
+            "email": "ricardo@r2soft.com.br"
+        },
+        {
+            "name":"R2 Soft - Informática e Softwares Ltda-ME",
+            "email": "r2soft@r2soft.com.br"
+        }
+    ],
+    "homepage": "https://www.r2soft.com.br/",
     "require": {
         "php": ">=7.2",
         "illuminate/database": "^6.0"

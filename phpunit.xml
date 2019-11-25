@@ -24,7 +24,7 @@
             </exclude>
         </whitelist>
     </filter>
-<!--    <logging>-->
-<!--        <log type="coverage-html" target="./report" lowUpperBound="40" highLowerBound="80" showUncoveredFiles="true" showOnlySummary="true"/>-->
-<!--    </logging>-->
+   <logging>
+        <log type="coverage-html" target="./report" lowUpperBound="40" highLowerBound="80" showUncoveredFiles="true" showOnlySummary="true"/>
+    </logging>
 </phpunit>
