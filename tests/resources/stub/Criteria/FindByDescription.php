@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use R2Soft\R2Database\Contracts\CriteriaInterface;
 use R2Soft\R2Database\Contracts\RepositoryInterface;
 
-readonly class FindByDescription implements CriteriaInterface
+class FindByDescription implements CriteriaInterface
 {
     public function __construct(
         private string $description,
