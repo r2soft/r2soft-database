@@ -1,24 +1,19 @@
 <?php
 
+namespace R2Soft\R2Database\Criteria;
 
-namespace R2soft\R2Database\Criteria;
-
-
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use R2Soft\R2Database\Contracts\CriteriaInterface;
 use R2Soft\R2Database\Contracts\RepositoryInterface;
 
-class FindByName implements CriteriaInterface
+readonly class FindByName implements CriteriaInterface
 {
+    public function __construct(
+        private string $name,
+    ) {}
 
-    private $name;
-
-    public function __construct($name)
-    {
-        $this->name = $name;
-    }
-
-    public function apply($model, RepositoryInterface $repository)
+    public function apply(Model|Builder $model, RepositoryInterface $repository): Builder
     {
         return $model->where('name', $this->name);
     }

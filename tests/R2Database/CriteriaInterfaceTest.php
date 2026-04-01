@@ -1,18 +1,16 @@
 <?php
 
-
-namespace R2Soft\R2Database\Tests;
+namespace R2Soft\R2Database\Tests\R2Database;
 
 use R2Soft\R2Database\Contracts\RepositoryInterface;
 use R2Soft\R2Database\Models\Category;
 use Illuminate\Database\Query\Builder;
+use R2Soft\R2Database\Tests\AbstractTestCase;
 use Mockery as m;
 
 class CriteriaInterfaceTest extends AbstractTestCase
 {
-    protected $repository;
-
-    public function test_shold_apply()
+    public function test_should_apply(): void
     {
         $mockQueryBuilder = m::mock(Builder::class);
         $mockRepository = m::mock(RepositoryInterface::class);
@@ -23,5 +21,4 @@ class CriteriaInterfaceTest extends AbstractTestCase
             ->andReturn($mockQueryBuilder);
         $this->assertInstanceOf(Builder::class, $mock->apply($mockModel, $mockRepository));
     }
-
 }

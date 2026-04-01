@@ -1,22 +1,23 @@
 <?php
 
-
 namespace R2Soft\R2Database\Contracts;
 
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 interface RepositoryInterface
 {
-    public function all($columns = array('*'));
+    public function all(array $columns = ['*']): Collection;
 
-    public function create(array $data);
+    public function create(array $data): Model;
 
-    public function update(array $data, $id);
+    public function update(array $data, int $id): Model;
 
-    public function delete($id);
+    public function delete(int $id): bool;
 
-    public function find($id, $columns = array('*'));
+    public function find(int $id, array $columns = ['*']): Model;
 
-    public function findBy(String $field, $value, $columns = array('*'));
+    public function findBy(string $field, mixed $value, array $columns = ['*']): Collection;
 
-    public function findByIdDifferenceAndOtherField($id, String $field, $value, $columns = array('*'));
+    public function findByIdDifferenceAndOtherField(int $id, string $field, mixed $value, array $columns = ['*']): Model;
 }
