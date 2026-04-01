@@ -2,6 +2,7 @@
 
 namespace R2Soft\R2Database;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -56,7 +57,7 @@ abstract class AbstractRepository implements RepositoryInterface, CriteriaCollec
         return $model->delete();
     }
 
-    public function find(int $id, array $columns = ['*']): Model
+    public function find(int $id, array $columns = ['*']): ?Model
     {
         $this->applyCriteria();
         return $this->model->findOrFail($id, $columns);
@@ -71,6 +72,30 @@ abstract class AbstractRepository implements RepositoryInterface, CriteriaCollec
     public function findByIdDifferenceAndOtherField(int $id, string $field, mixed $value, array $columns = ['*']): Model
     {
         return $this->model->where('id', '!=', $id)->where($field, 'LIKE', '%' . $value . '%')->firstOrFail();
+    }
+
+    public function list(string $column, ?string $key = null): array
+    {
+        $this->applyCriteria();
+        return $this->model->distinct()->get([$key, $column . ' as text'])->toArray();
+    }
+
+    public function pluck(string $column, ?string $key = null): array
+    {
+        $this->applyCriteria();
+        return $this->model->pluck($column, $key)->all();
+    }
+
+    public function paginate(int $limit = 15, array $columns = ['*']): LengthAwarePaginator
+    {
+        $this->applyCriteria();
+        return $this->model->select($columns)->paginate($limit);
+    }
+
+    public function count(): int
+    {
+        $this->applyCriteria();
+        return $this->model->count();
     }
 
     public function addCriteria(CriteriaInterface $criteria): static

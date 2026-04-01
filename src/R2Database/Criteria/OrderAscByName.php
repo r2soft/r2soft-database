@@ -7,14 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use R2Soft\R2Database\Contracts\CriteriaInterface;
 use R2Soft\R2Database\Contracts\RepositoryInterface;
 
-class FindByName implements CriteriaInterface
+class OrderAscByName implements CriteriaInterface
 {
-    public function __construct(
-        private string $name,
-    ) {}
-
     public function apply(Model|Builder $model, RepositoryInterface $repository): Builder
     {
-        return $model->where('name', $this->name);
+        return $model->orderBy('name', 'asc');
     }
 }

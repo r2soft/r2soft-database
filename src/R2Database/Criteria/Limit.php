@@ -7,16 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use R2Soft\R2Database\Contracts\CriteriaInterface;
 use R2Soft\R2Database\Contracts\RepositoryInterface;
 
-class FindByNameAndDescription implements CriteriaInterface
+class Limit implements CriteriaInterface
 {
     public function __construct(
-        private string $name,
-        private string $description,
+        private readonly ?int $limit,
     ) {}
 
     public function apply(Model|Builder $model, RepositoryInterface $repository): Builder
     {
-        return $model->where('name', $this->name)
-            ->where('description', $this->description);
+        if ($this->limit) {
+            return $model->limit($this->limit);
+        }
+        return $model->query();
     }
 }
